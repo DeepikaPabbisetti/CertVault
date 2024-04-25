@@ -5,10 +5,10 @@
     Endpoint: /api/employee/certs
     Query params: ?sort=(desc/asc)&sortBy=(CertName/IssuedDate/ExpiredDate)
     Payload:
-    Request payload: 
-        {
-            EmployeeId: "EmployeeId"
-        }
+        Request payload: 
+            {
+                EmployeeId: "EmployeeId"
+            }
     Response JSON:
         [{
             CertName: "CertName",
@@ -28,16 +28,16 @@
     Endpoint: /api/employee/addCert
     Query params: None
     Payload:
-    Response payload:
-        {
-            EmployeeId: "EmployeeId",
-            CertName: "CertName",
-            Issuer: "IssuingOrganization",
-            IssuedDate": "IssuedDate",
-            ExpiredDate": "ExpirationDate",
-            CredentialId: "CredentialId",
-            CredentialUrl: "CredentialUrl"
-        }
+        Response payload:
+            {
+                EmployeeId: "EmployeeId",
+                CertName: "CertName",
+                Issuer: "IssuingOrganization",
+                IssuedDate": "IssuedDate",
+                ExpiredDate": "ExpirationDate",
+                CredentialId: "CredentialId",
+                CredentialUrl: "CredentialUrl"
+            }
     Response JSON:
         {
             Status: "InsertStatus"
@@ -52,12 +52,12 @@
     Endpoint: /api/employee/updateCert
     Query params: ?updateField=FieldName
     Payload:
-    Request payload:
-        {
-            EmployeeId: "EmployeeId",
-            CredentialId: "CredentialId",
-            FieldName: "NewValue"
-        }
+        Request payload:
+            {
+                EmployeeId: "EmployeeId",
+                CredentialId: "CredentialId",
+                FieldName: "NewValue"
+            }
     Response JSON:
         {
             Status: "UpdateStatus"
@@ -72,11 +72,11 @@
     Endpoint: /api/employee/deleteCert
     Query params: None
     Payload:
-    Request payload:
-        {
-            EmployeeId: "EmployeeId",
-            CredentialId: "CredentialId"
-        }
+        Request payload:
+            {
+                EmployeeId: "EmployeeId",
+                CredentialId: "CredentialId"
+            }
     Response JSON:
         {
             Status: "DeleteStatus"
@@ -90,11 +90,11 @@
     Endpoint: /api/employee/searchCert
     Query params: None
     Payload:
-    Request payload
-        {
-            EmployeeId: "EmployeeId",
-            CredentialId: "CredentialId"
-        }
+        Request payload
+            {
+                EmployeeId: "EmployeeId",
+                CredentialId: "CredentialId"
+            }
     Response JSON:
        {
             CertName: "CertName",
