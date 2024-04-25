@@ -18,7 +18,7 @@
             CredentialId: "CredentialId",
             CredentialUrl: "CredentialUrl"
         }, {....}, ]
-    Response Code: 200(OK), 404(Employee Not Found)
+    Response Code: 200(OK)/404(Employee Not Found)
 ```
 
 ## Add cert:
@@ -42,7 +42,7 @@
         {
             Message: "Message"
         }
-    Response Code: 200(OK), 404(Employee Not Found)
+    Response Code: 200(OK)/404(Employee Not Found)
 ```
 
 ## Update cert:
@@ -62,7 +62,7 @@
         {
             Message: "Message"
         }
-    Response Code: 200(OK), 404(Employee Not Found)
+    Response Code: 200(OK)/404(Employee Not Found)
 ```
 
 ## Delete cert
@@ -81,7 +81,7 @@
         {
             Message: "Message"
         }
-    Response Code: 200(OK), 404(Employee Not Found)
+    Response Code: 200(OK)/404(Employee Not Found)
 ```
 
 ## Search cert
@@ -104,5 +104,5 @@
             CredentialId: "CredentialId",
             CredentialUrl: "CredentialUrl"
         }
-    Response Code: 200(OK), 404(Employee Not Found)
+    Response Code: 200(OK)/404(Employee Not Found)
 ```
