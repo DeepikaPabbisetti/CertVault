@@ -21,7 +21,9 @@
     Response Code: 200(OK), 404(Employee Not Found)
 ```
 
-Add cert
+## Add cert:
+
+```code
     Method: POST
     Endpoint: /api/employee/addCert
     Query params: None
@@ -42,8 +44,11 @@ Add cert
             "Status": "InsertStatus"
         }
     Response Code: 200(OK), 404(Employee Not Found)
+```
 
-Update cert
+## Update cert:
+
+```code
     Method: PUT
     Endpoint: /api/employee/updateCert
     Query params: ?updateField=Issuer
@@ -58,8 +63,11 @@ Update cert
             "Status": "UpdateStatus"
         }
     Response Code: 200(OK), 404(Employee Not Found)
+```
 
-Delete cert
+## Delete cert
+
+```code
     Method: DELETE
     Endpoint: /api/employee/deleteCert
     Query params: None
@@ -73,3 +81,4 @@ Delete cert
             "Status": "DeleteStatus"
         }
     Response Code: 200(OK), 404(Employee Not Found)
+```
