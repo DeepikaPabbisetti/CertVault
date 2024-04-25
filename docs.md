@@ -28,7 +28,7 @@
     Endpoint: /api/employee/addCert
     Query params: None
     Payload:
-        Response payload:
+        Request payload:
             {
                 EmployeeId: "EmployeeId",
                 CertName: "CertName",
