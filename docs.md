@@ -2,7 +2,10 @@ List certs
     Method: GET
     Endpoint: /api/employee/certs
     Query params: ?sort=desc
-    Payload: None
+    Payload: 
+        {
+            "EmployeeId": "EmployeeId"
+        }
     Response JSON:
         [{
             "CertId": "CertId",
