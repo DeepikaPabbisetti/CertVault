@@ -3,7 +3,7 @@
 ```code
     Method: GET
     Endpoint: /api/employee/certs
-    Query params: ?sort=(desc/asc)&sortBy=(CertName/IssuedDate/ExpiredDate)
+    Query params: ?sort=(desc/asc)&sortBy=(CertName/IssuedDate/ExpiryDate)
     Payload:
         Request payload: 
             {
@@ -14,7 +14,7 @@
             CertName: "CertName",
             Issuer: "IssuingOrganization",
             IssuedDate: "IssuedDate",
-            ExpiredDate: "ExpirationDate",
+            ExpiryDate: "ExpirationDate",
             CredentialId: "CredentialId",
             CredentialUrl: "CredentialUrl"
         }, {....}, ]
@@ -34,7 +34,7 @@
                 CertName: "CertName",
                 Issuer: "IssuingOrganization",
                 IssuedDate": "IssuedDate",
-                ExpiredDate": "ExpirationDate",
+                ExpiryDate": "ExpirationDate",
                 CredentialId: "CredentialId",
                 CredentialUrl: "CredentialUrl"
             }
@@ -100,7 +100,7 @@
             CertName: "CertName",
             Issuer: "IssuingOrganization",
             IssuedDate: "IssuedDate",
-            ExpiredDate: "ExpirationDate",
+            ExpiryDate: "ExpirationDate",
             CredentialId: "CredentialId",
             CredentialUrl: "CredentialUrl"
         }
