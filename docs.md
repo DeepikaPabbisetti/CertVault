@@ -40,7 +40,7 @@
             }
     Response JSON:
         {
-            Status: "InsertStatus"
+            Message: "Message"
         }
     Response Code: 200(OK), 404(Employee Not Found)
 ```
@@ -60,7 +60,7 @@
             }
     Response JSON:
         {
-            Status: "UpdateStatus"
+            Message: "Message"
         }
     Response Code: 200(OK), 404(Employee Not Found)
 ```
@@ -79,7 +79,7 @@
             }
     Response JSON:
         {
-            Status: "DeleteStatus"
+            Message: "Message"
         }
     Response Code: 200(OK), 404(Employee Not Found)
 ```
