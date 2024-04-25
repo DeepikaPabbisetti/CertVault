@@ -3,20 +3,20 @@
 ```code
     Method: GET
     Endpoint: /api/employee/certs
-    Query params: ?sort=desc
-    Payload: 
+    Query params: ?sort=(desc/asc)&sortBy=(CertName/IssuedDate/ExpiredDate)
+    Payload:
+    Request payload: 
         {
-            "EmployeeId": "EmployeeId"
+            EmployeeId: "EmployeeId"
         }
     Response JSON:
         [{
-            "CertId": "CertId",
-            "CertName": "CertName",
-            "Issuer": "IssuingOrganization",
-            "IssuedDate": "IssuedDate",
-            "ExpiredDate": "ExpirationDate",
-            "CredentialId": "CredentialId",
-            "CredentialUrl": "CredentialUrl"
+            CertName: "CertName",
+            Issuer: "IssuingOrganization",
+            IssuedDate: "IssuedDate",
+            ExpiredDate: "ExpirationDate",
+            CredentialId: "CredentialId",
+            CredentialUrl: "CredentialUrl"
         }, {....}, ]
     Response Code: 200(OK), 404(Employee Not Found)
 ```
@@ -28,20 +28,19 @@
     Endpoint: /api/employee/addCert
     Query params: None
     Payload:
+    Response payload:
         {
-            "EmployeeId": "EmployeeId",
-            "CertId": "CertId",
-            "CertName": "CertName",
-            "Issuer": "IssuingOrganization",
-            "IssuedDate": "IssuedDate",
-            "ExpiredDate": "ExpirationDate",
-            "CredentialId": "CredentialId",
-            "CredentialUrl": "CredentialUrl"
+            EmployeeId: "EmployeeId",
+            CertName: "CertName",
+            Issuer: "IssuingOrganization",
+            IssuedDate": "IssuedDate",
+            ExpiredDate": "ExpirationDate",
+            CredentialId: "CredentialId",
+            CredentialUrl: "CredentialUrl"
         }
     Response JSON:
         {
-            "CertId": "CertId",
-            "Status": "InsertStatus"
+            Status: "InsertStatus"
         }
     Response Code: 200(OK), 404(Employee Not Found)
 ```
@@ -51,16 +50,17 @@
 ```code
     Method: PUT
     Endpoint: /api/employee/updateCert
-    Query params: ?updateField=Issuer
+    Query params: ?updateField=FieldName
     Payload:
+    Request payload:
         {
-            "EmployeeId": "EmployeeId",
-            "Issuer": "NewIssuer"
+            EmployeeId: "EmployeeId",
+            CredentialId: "CredentialId",
+            FieldName: "NewValue"
         }
     Response JSON:
         {
-            "EmployeeId": "EmployeeId",
-            "Status": "UpdateStatus"
+            Status: "UpdateStatus"
         }
     Response Code: 200(OK), 404(Employee Not Found)
 ```
@@ -72,13 +72,14 @@
     Endpoint: /api/employee/deleteCert
     Query params: None
     Payload:
+    Request payload:
         {
-            "EmployeeId": "EmployeeId"
+            EmployeeId: "EmployeeId",
+            CredentialId: "CredentialId"
         }
     Response JSON:
         {
-            "EmployeeId": "EmployeeId",
-            "Status": "DeleteStatus"
+            Status: "DeleteStatus"
         }
     Response Code: 200(OK), 404(Employee Not Found)
 ```
@@ -86,21 +87,22 @@
 ## Search cert
 ```code
     Method: GET
-    Endpoint: /api/employee/updateCert
+    Endpoint: /api/employee/searchCert
     Query params: None
     Payload:
+    Request payload
         {
-            "CertId": "CertId"
+            EmployeeId: "EmployeeId",
+            CredentialId: "CredentialId"
         }
     Response JSON:
        {
-            "CertId": "CertId",
-            "CertName": "CertName",
-            "Issuer": "IssuingOrganization",
-            "IssuedDate": "IssuedDate",
-            "ExpiredDate": "ExpirationDate",
-            "CredentialId": "CredentialId",
-            "CredentialUrl": "CredentialUrl"
+            CertName: "CertName",
+            Issuer: "IssuingOrganization",
+            IssuedDate: "IssuedDate",
+            ExpiredDate: "ExpirationDate",
+            CredentialId: "CredentialId",
+            CredentialUrl: "CredentialUrl"
         }
     Response Code: 200(OK), 404(Employee Not Found)
 ```
