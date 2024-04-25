@@ -1,4 +1,6 @@
-List certs
+## List Certs:
+
+```code
     Method: GET
     Endpoint: /api/employee/certs
     Query params: ?sort=desc
@@ -17,6 +19,7 @@ List certs
             "CredentialUrl": "CredentialUrl"
         }, {....}, ]
     Response Code: 200(OK), 404(Employee Not Found)
+```
 
 Add cert
     Method: POST
