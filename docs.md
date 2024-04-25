@@ -82,3 +82,25 @@
         }
     Response Code: 200(OK), 404(Employee Not Found)
 ```
+
+## Search cert
+```code
+    Method: GET
+    Endpoint: /api/employee/updateCert
+    Query params: None
+    Payload:
+        {
+            "CertId": "CertId"
+        }
+    Response JSON:
+       {
+            "CertId": "CertId",
+            "CertName": "CertName",
+            "Issuer": "IssuingOrganization",
+            "IssuedDate": "IssuedDate",
+            "ExpiredDate": "ExpirationDate",
+            "CredentialId": "CredentialId",
+            "CredentialUrl": "CredentialUrl"
+        }
+    Response Code: 200(OK), 404(Employee Not Found)
+```
