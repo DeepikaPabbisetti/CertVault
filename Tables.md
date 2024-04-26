@@ -23,13 +23,10 @@ Employeer:
     Designation
 
 Certifications:
+    EmployeeId (Foreign Key)
     CredentialId (Primary key)
     CertName
     Issuer
     IssuedDate
     ExpiryDate
     CredentialUrl
-
-EmployeeCerts:
-    EmployeeId (Foreign key)
-    CredentialId (Foreign key)

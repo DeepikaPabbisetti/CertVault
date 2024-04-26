@@ -100,8 +100,8 @@
 
 ```code
     Method: DELETE
-    Endpoint: /api/employee/certs
-    Query params: ?employeeId=employeeId&credentialId=credentialId
+    Endpoint: /api/:employeeId/certs/:credentialId
+    Query params: None
     Payload: None
     Response JSON:
     Success:
