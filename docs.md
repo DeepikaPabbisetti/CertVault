@@ -60,7 +60,7 @@
 
 ```code
     Method: PUT
-    Endpoint: /api/:employee/certs/:credentialId
+    Endpoint: /api/:employeeId/certs/:credentialId
     Query params: None
     Payload:
         Request payload:
