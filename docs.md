@@ -6,15 +6,27 @@
     Query params: ?sort=(desc/asc)&sortBy=(CertName/IssuedDate/ExpiryDate)
     Payload: None
     Response JSON:
-        [{
-            "certName": "CertName",
-            "issuer": "IssuingOrganization",
-            "issuedDate": "IssuedDate",
-            "expiryDate": "ExpirationDate",
-            "credentialId": "CredentialId",
-            "credentialUrl": "CredentialUrl"
-        }, {....}, ]
-    Response Code: 200(OK)/404(Not Found)
+    Success:
+        {
+            "Certs":
+            [{
+                "CertName": "CertName",
+                "Issuer": "IssuingOrganization",
+                "IssuedDate": "IssuedDate",
+                "ExpiryDate": "ExpirationDate",
+                "CredentialId": "CredentialId",
+                "CredentialUrl": "CredentialUrl"
+            }, {....}, ]
+        }
+    Failure:
+        {
+            "Error":
+            {
+                "Code": "errorCode",
+                "Message": "errorMessage",
+            }
+        }
+    Response Code: 200(OK)/204(No Content)/500(Internal Server Error)
 ```
 
 ## Add cert:
@@ -26,34 +38,37 @@
     Payload:
         Request payload:
             {
-                "certName": "CertName",
-                "issuer": "IssuingOrganization",
-                "issuedDate": "IssuedDate",
-                "expiryDate": "ExpirationDate",
-                "credentialId": "CredentialId",
-                "credentialUrl": "CredentialUrl"
+                "CertName": "CertName",
+                "Issuer": "IssuingOrganization",
+                "IssuedDate": "IssuedDate",
+                "ExpiryDate": "ExpirationDate",
+                "CredentialId": "CredentialId",
+                "CredentialUrl": "CredentialUrl"
             }
             Response payload: None
     Response JSON:
     Success:
         {
-            "certName": "CertName",
-            "issuer": "IssuingOrganization",
-            "issuedDate": "IssuedDate",
-            "expiryDate": "ExpirationDate",
-            "credentialId": "CredentialId",
-            "credentialUrl": "CredentialUrl"
+            "InsertedCert":
+            {
+                "CertName": "CertName",
+                "Issuer": "IssuingOrganization",
+                "IssuedDate": "IssuedDate",
+                "ExpiryDate": "ExpirationDate",
+                "CredentialId": "CredentialId",
+                "CredentialUrl": "CredentialUrl"
+            },
+            "Status": "Certificate added successfully"
         }
     Failure:
         {
-            "error":
+            "Error":
             {
-                "code": "errorCode",
-                "message": "errorMessage",
-                "description": "errorDescription"
+                "Code": "ErrorCode",
+                "Message": "ErrorMessage",
             }
         }
-    Response Code: 201(Created)/404(Employee Not Found)
+    Response Code: 201(Created)/500(Internal Server Error)
 ```
 
 ## Update cert:
@@ -65,35 +80,37 @@
     Payload:
         Request payload:
         {
-            "updateDetails":
-            {
-                "expiryDate": "expirationDate"
-            }
+            "CertName": "CertName",
+            "Issuer": "IssuingOrganization",
+            "IssuedDate": "IssuedDate",
+            "ExpiryDate": "ExpirationDate",
+            "CredentialId": "CredentialId",
+            "CredentialUrl": "CredentialUrl"
         }
         Response payload: None
     Response JSON:
     Success:
         {
-            "updatedCert":
+            "UpdatedCert":
             {
-                "certName": "CertName",
-                "issuer": "IssuingOrganization",
-                "issuedDate": "IssuedDate",
-                "expiryDate": "ExpirationDate",
-                "credentialId": "CredentialId",
-                "credentialUrl": "CredentialUrl"
-            }
+                "CertName": "CertName",
+                "Issuer": "IssuingOrganization",
+                "IssuedDate": "IssuedDate",
+                "ExpiryDate": "ExpirationDate",
+                "CredentialId": "CredentialId",
+                "CredentialUrl": "CredentialUrl"
+            },
+            "Status": "Certificate updated successfully"
         }
     Failure:
         {
-            "error":
+            "Error":
             {
-                "code": "errorCode",
-                "message": "errorMessage",
-                "description": "errorDescription"
+                "Code": "ErrorCode",
+                "Message": "ErrorMessage",
             }
         }
-    Response Code: 200(OK)/404(Employee Not Found)
+    Response Code: 200(OK)/404(Employee Not Found)/500(Internal Server Error)
 ```
 
 ## Delete cert
@@ -106,23 +123,22 @@
     Response JSON:
     Success:
         {
-            "credentialId": "credentialId",
-            "message": "message"
+            "CredentialId": "credentialId",
+            "Status": "message"
         }
     Failure:
-        "error":
+        "Error":
         {
-            "code": "errorCode",
-            "message": "errorMessage",
-            "description": "description"
+            "Code": "ErrorCode",
+            "Message": "ErrorMessage",
         }
-    Response Code: 200(OK)/404(Employee Not Found)
+    Response Code: 200(OK)/404(Not Found)/500(Internal Server Error)
 ```
 
 ## Search cert
 ```code
     Method: GET
-    Endpoint: /api/:employee/searchCert/:credentialId
+    Endpoint: /api/:employee/certs/searchCert/:credentialId
     Query params: None
     Payload: None
     Response JSON:
@@ -134,5 +150,5 @@
             "credentialId": "CredentialId",
             "credentialUrl": "CredentialUrl"
         }
-    Response Code: 200(OK)/404(Employee Not Found)
+    Response Code: 200(OK)/404(Not Found)/500(Internal Server Error)
 ```
