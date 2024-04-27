@@ -110,7 +110,7 @@
                 "Message": "ErrorMessage",
             }
         }
-    Response Code: 200(OK)/404(Employee Not Found)/500(Internal Server Error)
+    Response Code: 200(OK)/404(Not Found)/500(Internal Server Error)
 ```
 
 ## Delete cert
