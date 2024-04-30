@@ -1,6 +1,6 @@
 // To get all the certificates, add the certificate, update the certificate an delete the certificate of an employee
 
-import { connectDb  } from "./dbConnection.js"
+import { connectDb  } from ".connection.js"
 
 const db = await connectDb();
 let certNotFound = {Error: {Code: "Not Found", Message: "Given Certificate not found."}};
