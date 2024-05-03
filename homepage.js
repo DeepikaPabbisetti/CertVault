@@ -15,86 +15,56 @@ async function main()
 {
     createAddCertForm();
     await showCerts(); 
-    bindEvents();
 }
 
-function bindEvents() 
+async function addCert()
 {
-    let addButton = document.getElementById("add");
-    const formContainer = document.getElementById("addCertDiv");
-    const submitButton = document.getElementById("submitButton");
-    const closeButton = document.getElementById("closeButton");
-    const deleteButtons = document.querySelectorAll("#Delete");
-    const editButtons = document.querySelectorAll("#Edit");
-    submitButton.addEventListener("click", function(event)
-    {
-        event.preventDefault();
-        if (formContainer.style.display === "block") 
-        {
-            hideForm(formContainer);
-        }
-        if (isEdit == true)
-        {
-            updateCert();
-        }
-        else if(isEdit == false)
-        {
-            addCert();
-        }
-    });
-    
-    closeButton.addEventListener('click', function(event)
-    {
-        isEdit = null;
-        event.preventDefault();
-        resetInputFields();
-        if (formContainer.style.display === "block") 
-        {
-            hideForm(formContainer);
-        }
-    });
+    const cert = getCert();
+    const options = {method: "POST", headers: {"Content-Type": "application/json", "Token": token}, body: JSON.stringify(cert)};
+    await callApi(url, options);
+}
 
-    addButton.addEventListener("click", function(event) 
+async function editCert(object)
+{
+    const cert = getDivValues(object);
+    credentialId = cert.CredentialId;
+    populateInputBoxes(cert);
+    isEdit = true;
+}
+
+async function updateCert()
+{
+    let updatedCert = getCert();
+    let options = {method: "PUT", headers: {"Content-Type": "application/json", "Token": token}, body: JSON.stringify(updatedCert)};
+    if (credentialId)
     {
-        isEdit = false;
-        event.preventDefault();
-        if (formContainer.style.display === "none") 
+        await callApi(`${url}/${credentialId}`, options);
+    }
+}
+
+async function deleteCert(object)
+{
+    const cert = getDivValues(object);
+    credentialId = cert.CredentialId;
+    let options = {method: "DELETE", headers: {"Content-Type": "application/json", "Token": token}};
+    if (credentialId)
+    {
+        if (confirm(`Are you sure want to delete ${credentialId}?`))
         {
-            showForm(formContainer);
+            await callApi(`${url}/${credentialId}`, options);
         }
-        submitButton.value = "Save";
-        closeButton.value = "Close";
-    });
-
-    editButtons.forEach(function(button) 
-    {
-        isEdit = true;
-        button.addEventListener("click", function(event) 
+        else
         {
-            event.preventDefault();
-            if (formContainer.style.display === "none") 
-            {
-                showForm(formContainer);
-            }
-            editCert(this);
-            submitButton.value = "Edit";
-            closeButton.value = "Close";
-        });
-    });
-
-    deleteButtons.forEach(function(button) 
-    {
-        button.addEventListener("click", function(event) 
-        {
-            deleteCert(this);
-        });
-    });
+            alert("You cancelled!")
+        }
+    }
 }
 
 function resetInputFields() 
 {
     const inputFields = document.getElementById("addCertForm").querySelectorAll('input');
-    inputFields.forEach(function(inputField) {
+    inputFields.forEach(function(inputField) 
+    {
         inputField.value = '';
     });
 }
@@ -114,7 +84,7 @@ async function getCerts()
     let options = {method: "GET", headers: {"Content-Type": "application/json", "Token": token}};
     try
     {
-        const response = await fetch("http://localhost:5000/api/certs", options);
+        const response = await fetch(url, options);
         let certs = await response.json();
         return certs;
     }
@@ -127,18 +97,29 @@ async function getCerts()
 
 function addButtons() 
 {
-    let buttons = ["Edit", "Delete"];
     let certBlocks = document.querySelectorAll("div.cert");
-
     certBlocks.forEach(function(certBlock) 
     {
-        for (let counter = 0; counter < buttons.length; counter++)
+        let editButton = document.createElement("button");
+        editButton.id = "edit";
+        editButton.innerText = "Edit";
+        certBlock.appendChild(editButton);
+        editButton.addEventListener("click", function(event)
         {
-            let button = document.createElement("button");
-            button.id = buttons[counter];
-            button.innerText = buttons[counter];
-            certBlock.appendChild(button);
-        }
+            isEdit = true;
+            event.preventDefault();
+            showForm(document.getElementById("addCertDiv"));
+            editCert(this);
+        });
+
+        let deleteButton = document.createElement("button");
+        deleteButton.id = "delete";
+        deleteButton.innerText = "Delete";
+        certBlock.appendChild(deleteButton);
+        deleteButton.addEventListener("click", function()
+        {
+            deleteCert(this);
+        });
     });
 }
 
@@ -146,10 +127,18 @@ async function createAddCertForm()
 {
     let inputTypes = ["text", "text", "date", "date", "text", "text"];
     let container = document.getElementById("container");
-    let button = document.createElement("button");
-    button.id = "add";
-    button.innerText = "Add";
-    container.appendChild(button);
+    let addButton = document.createElement("button");
+    addButton.id="add";
+    addButton.innerText = "Add";
+    addButton.addEventListener("click", function(event)
+    {
+        event.preventDefault();
+        isEdit = false;
+        resetInputFields();
+        showForm(document.getElementById("addCertDiv"));
+    })
+
+    container.appendChild(addButton);
 
     let divBlock = document.createElement("div");
     divBlock.id = "addCertDiv";
@@ -180,11 +169,28 @@ async function createAddCertForm()
     submitButton.type = "submit";
     submitButton.id = "submitButton";
     submitButton.innerText = "Submit"
+    submitButton.addEventListener("click", function(event)
+    {
+        event.preventDefault();
+        hideForm(document.getElementById("addCertDiv"));
+        if (isEdit == true)
+        {
+            updateCert();
+        }
+        else if(isEdit == false)
+        {
+            addCert();
+        }
+    });
 
     let closeButton = document.createElement("button");
     closeButton.type = "button";
     closeButton.id = "closeButton";
     closeButton.innerText = "close";
+    closeButton.addEventListener("click", function(event)
+    {
+        hideForm(document.getElementById("addCertDiv"));
+    });
     
     addCertForm.appendChild(submitButton);
     addCertForm.appendChild(closeButton);
@@ -229,13 +235,6 @@ async function printResult(response)
     }
 }
 
-async function addCert()
-{
-    const cert = getCert();
-    const options = {method: "POST", headers: {"Content-Type": "application/json", "Token": token}, body: JSON.stringify(cert)};
-    await callApi(url, options);
-}
-
 async function showCerts()
 {
     let response = await getCerts();
@@ -261,7 +260,6 @@ async function showCerts()
             block.appendChild(divBlock);
         }
         addButtons();
-        bindEvents();
     }
 }
 
@@ -323,40 +321,4 @@ function getDivValues(object)
     cert["CredentialId"] = credentialId;
     cert["CredentialUrl"] = viewCertificateHref;
     return cert;
-}
-
-async function editCert(object)
-{
-    const cert = getDivValues(object);
-    credentialId = cert.CredentialId;
-    populateInputBoxes(cert);
-    isEdit = true;
-}
-
-async function updateCert()
-{
-    let updatedCert = getCert();
-    let options = {method: "PUT", headers: {"Content-Type": "application/json", "Token": token}, body: JSON.stringify(updatedCert)};
-    if (credentialId)
-    {
-        await callApi(`${url}/${credentialId}`, options);
-    }
-}
-
-async function deleteCert(object)
-{
-    const cert = getDivValues(object);
-    credentialId = cert.CredentialId;
-    let options = {method: "DELETE", headers: {"Content-Type": "application/json", "Token": token}};
-    if (credentialId)
-    {
-        if (confirm(`Are you sure want to delete ${credentialId}?`))
-	    {
-            await callApi(`${url}/${credentialId}`, options);
-        }
-        else
-        {
-            alert("You cancelled!")
-        }
-    }
-}
+}    
