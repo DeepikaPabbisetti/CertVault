@@ -72,7 +72,6 @@ function bindEvents()
         button.addEventListener("click", function(event) 
         {
             event.preventDefault();
-            event.stopPropagation();
             if (formContainer.style.display === "none") 
             {
                 showForm(formContainer);
