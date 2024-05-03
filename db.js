@@ -11,7 +11,6 @@ let certNotFound = {Error: {Code: "Not Found", Message: "Given Certificate not f
 export async function validateUserLogin(userName, password)
 {
     let passwordHash = md5("2d4r" + password);
-    let response, responseCode;
     let selectQuery = "SELECT * FROM User WHERE UserName=? AND Password=?";
     try
     {
@@ -22,21 +21,34 @@ export async function validateUserLogin(userName, password)
             let updateStatus = await updateUser(result.EmployeeId, token);
             if (updateStatus == 1)
             {
-                response = ({Employee: result.EmployeeId, Token: token});
-                responseCode = 200;
+                return {Employee: result.EmployeeId, Token: token};
             }
         }
         else
         {
-            response = ({Status: "Invalid user"});
-            responseCode = 404;
+            return {Status: "Invalid user"};
         }
     }
     catch(error)
     {
-        responseCode = 500;
-        response = ({Error: {Code: error.code}, Message: error.message});
+        return error;
     }
+}
+
+
+export async function createUser(userName, password, email, employeeId)
+{
+   const passwordHash = md5('2d4r' + password);
+   const insertQuery = "INSERT INTO USER(UserName, Password, EmployeeId, Email) VALUES(?, ?, ?, ?)";
+   try
+   {
+       const result = await db.run(insertQuery, [userName, passwordHash, employeeId, email]);
+       return {Status: result.changes};
+   }
+   catch(error)
+   {
+       return error;
+   }
 }
 
 async function generateToken()
@@ -81,32 +93,22 @@ export async function validateToken(token)
 
 export async function getCerts(employeeId, sortOrder, sortBy)
 {
-    let certs, response, responseCode = 500;
+    let certs;
     const selectQuery = `SELECT CredentialId, CertName, Issuer, IssuedDate, ExpiryDate, CredentialUrl FROM certifications WHERE EmployeeId=? ORDER BY ${sortBy} ${sortOrder}`;
     try
     {
         certs = await db.all(selectQuery, employeeId);
-        response = ({Certs: certs});
-        if (certs)
-        {
-            responseCode = 200;
-        }
-        else
-        {
-            responseCode = 204;
-        }
+        return ({Certs: certs});
     }
     catch(error)
     {
-        response = ({Error: {Code: error.code}, Message: error.message});
+        return error;
     }
-    return [response, responseCode];
 }
 
 export async function addCert(employeeId, cert) 
 { 
-    let insertQuery = `INSERT INTO Certifications(EmployeeId, CredentialId, CertName, Issuer, IssuedDate, ExpiryDate, CredentialUrl) VALUES(?, ?, ?, ?, ?, ?, ?)`;
-    let response, responseCode = 500;
+    const insertQuery = `INSERT INTO Certifications(EmployeeId, CredentialId, CertName, Issuer, IssuedDate, ExpiryDate, CredentialUrl) VALUES(?, ?, ?, ?, ?, ?, ?)`;
     try 
     {
         const result = await db.run(insertQuery, [employeeId, cert.CredentialId, cert.CertName, cert.Issuer, cert.IssuedDate, cert.ExpiryDate, cert.CredentialUrl]);
@@ -115,22 +117,19 @@ export async function addCert(employeeId, cert)
             const insertedCert = await getAffectedRow(employeeId, cert.CredentialId);
             if (insertedCert)
             {
-                responseCode = 201;
-                response = ({InsertedCert: insertedCert, Status: "Certificate added successfully."})
+                return {InsertedCert: insertedCert, Status: "Certificate added successfully."};
             }
         }
     } 
     catch(error)
     {
-        response = ({Error: {Code: error.code, Message: error.message}});
+        return error;
     }
-    return [response, responseCode]
 }
 
 export async function updateCert(employeeId, credentialId, cert)
 {
-    let updateQuery = `UPDATE Certifications SET CredentialId=?, CertName=?, Issuer=?, IssuedDate=?, ExpiryDate=?, CredentialUrl=? WHERE EmployeeId=? AND CredentialId=?`;
-    let responseCode = 404, response;
+    const updateQuery = `UPDATE Certifications SET CredentialId=?, CertName=?, Issuer=?, IssuedDate=?, ExpiryDate=?, CredentialUrl=? WHERE EmployeeId=? AND CredentialId=?`;
     try
     {
         let result = await db.run(updateQuery, cert.CredentialId, cert.CertName, cert.Issuer, cert.IssuedDate, cert.ExpiryDate, cert.CredentialUrl, employeeId, credentialId);
@@ -139,45 +138,39 @@ export async function updateCert(employeeId, credentialId, cert)
             let updatedCert = await getAffectedRow(employeeId, cert.CredentialId);
             if (updatedCert)
             {
-                responseCode = 200;
-                response = ({UpdatedCert: updatedCert, Status: "Certificate updated successfully."});
+                return ({UpdatedCert: updatedCert, Status: "Certificate updated successfully."});
             }
         }
         else
         {
-            response = certNotFound;
+            return certNotFound;
         }
     }
     catch(error)
     {
-        responseCode = 500;
-        response = ({Error: {Code: error.code, Message: error.message}});
+        return error;
     }
-    return [response, responseCode];
 }
 
 export async function deleteCert(employeeId, credentialId)
 {
     let deleteQuery = `DELETE FROM Certifications WHERE EmployeeId=? AND CredentialId=?`;
-    let responseCode = 404, response;
     try
     {
         let result = await db.run(deleteQuery, [employeeId, credentialId]);
         if (result.changes == 1)
         {
-            responseCode = 200;
-            response = ({CredentialId: credentialId, Status: "Certificate deleted successfully."});
+            return {CredentialId: credentialId, Status: "Certificate deleted successfully."};
         }
         else
         {
-            response = certNotFound;
+            return certNotFound;
         }
     }
     catch(error)
     {
-        response = ({Error: {Code: error.code, Message: error.message}});
+        return ({Error: {Code: error.code, Message: error.message}});
     }
-    return [response, responseCode];
 }
 
 export async function getAffectedRow(employeeId, credentialId)

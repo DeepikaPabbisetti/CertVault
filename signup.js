@@ -1,26 +1,18 @@
 // Login user and store token in local storage
 
-let fields = ["userName", "password", "submit"];
-let inputTypes = ["text", "password", "submit"];
-let labels = ["User name", "Password"];
+let fields = ["employeeId", "userName", "password", "email", "submit"];
+let inputTypes = ["text", "text", "password", "email", "submit"];
+let labels = ["Employee Id", "User name", "Password", "Email"];
 let form;
 
 createForm();
 bindEvent();
 
-function validateUser()
-{
-    if (localStorage.getItem("Token"))
-    {
-        window.location.assign("./homepage.html");
-    }
-}
-
 function createForm()
 {
     form = document.createElement("form");
-    form.id = "loginForm";
-    document.getElementById("loginPage").appendChild(form);
+    form.id = "signupForm";
+    document.getElementById("signupPage").appendChild(form);
 
     for (let counter = 0; counter < fields.length; counter++)
     {
@@ -46,29 +38,31 @@ function bindEvent()
     form.addEventListener("submit", function(event)
     {
         event.preventDefault();
-        login()
+        signup()
     });
 }
 
-async function login() 
+async function signup() 
 {
-    let userName = document.getElementById(fields[0]).value;
-    let password = document.getElementById(fields[1]).value;
-    let data = { UserName: userName, Password: password };
+    let employeeId = document.getElementById(fields[0]).value;
+    let userName = document.getElementById(fields[1]).value;
+    let password = document.getElementById(fields[2]).value;
+    let email = document.getElementById(fields[3]).value;
+    let data = { EmployeeId: employeeId, UserName: userName, Password: password, Email: email };
     const options = {method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(data)};
     try 
     {
-        const response = await fetch("http://localhost:5000/api/login", options);
+        const response = await fetch("http://localhost:5000/api/signup", options);
         let result = await response.json();
-        if (result.Token)
+        if (result.Status == 1)
         {
-            alert("Login successfully!")
-            localStorage.setItem("Token", result.Token);
-            window.location.assign("./homepage.html");
+            alert("User created successfully");
+            window.location.assign("./index.html");
         }
         else
         {
-            alert("Invalid user details");
+            console.log(result.code);
+            alert("Failed to create new user");
         }
     } 
     catch (error) 
