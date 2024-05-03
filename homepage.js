@@ -132,7 +132,7 @@ function addButtons()
 
     certBlocks.forEach(function(certBlock) 
     {
-        for (let counter = 0; counter < 2; counter++)
+        for (let counter = 0; counter < buttons.length; counter++)
         {
             let button = document.createElement("button");
             button.id = buttons[counter];
