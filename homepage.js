@@ -47,6 +47,7 @@ function bindEvents()
     {
         isEdit = null;
         event.preventDefault();
+        resetInputFields();
         if (formContainer.style.display === "block") 
         {
             hideForm(formContainer);
@@ -57,7 +58,6 @@ function bindEvents()
     {
         isEdit = false;
         event.preventDefault();
-        resetInputFields();
         if (formContainer.style.display === "none") 
         {
             showForm(formContainer);
@@ -147,7 +147,7 @@ async function createAddCertForm()
     let inputTypes = ["text", "text", "date", "date", "text", "text"];
     let container = document.getElementById("container");
     let button = document.createElement("button");
-    button.id="add";
+    button.id = "add";
     button.innerText = "Add";
     container.appendChild(button);
 
@@ -221,7 +221,7 @@ async function printResult(response)
     let result = await response.json();
     if (response.status == 200)
     {
-        console.log(`${result.Status}`);
+        console.log(result.Status);
     }
     else
     {
