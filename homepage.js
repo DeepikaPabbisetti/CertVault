@@ -19,7 +19,7 @@ async function main()
 
 async function addCert()
 {
-    const cert = getCert();
+    const cert = getFormData();
     const options = {method: "POST", headers: {"Content-Type": "application/json", "Token": token}, body: JSON.stringify(cert)};
     await callApi(url, options);
 }
@@ -34,7 +34,7 @@ async function editCert(object)
 
 async function updateCert()
 {
-    let updatedCert = getCert();
+    let updatedCert = getFormData();
     let options = {method: "PUT", headers: {"Content-Type": "application/json", "Token": token}, body: JSON.stringify(updatedCert)};
     if (credentialId)
     {
@@ -158,6 +158,7 @@ async function createAddCertForm()
         element.type = inputTypes[counter];
         element.required = true;
         element.id = fields[counter];
+        element.name = fields[counter];
         element.placeholder = `Enter ${fields[counter]}`;
         addCertForm.appendChild(element);
 
@@ -197,12 +198,14 @@ async function createAddCertForm()
     divBlock.appendChild(addCertForm);
 }
 
-function getCert()
+function getFormData()
 {
+    const form = document.getElementById('addCertForm');
+    const formData = new FormData(form);
     let cert = {};
-    for (let counter = 0; counter < fields.length; counter++)
+    for (const pair of formData.entries()) 
     {
-        cert[fields[counter]] = document.getElementById(fields[counter]).value;
+        cert[pair[0]] = pair[1];
     }
     return cert;
 }
