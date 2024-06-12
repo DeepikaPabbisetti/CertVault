@@ -24,7 +24,7 @@ Required Permissions: Current user (Employee)
 Success Response: 
 
 Code: ``` 200 OK 
-```
+        ```
 
 Content Example: 
 ``` { 
