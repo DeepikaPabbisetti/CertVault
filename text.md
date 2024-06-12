@@ -1,7 +1,10 @@
-##Show User Info
+## Show User Info
  This endpoint retrieves the profile information of a
 specific user. 
-URL: ```code/certpro/api/:user/profile ``` Headers: auth_key :
+URL:  ```code 
+            /certpro/api/:user/profile 
+        ``` 
+Headers: auth_key :
 \[String\] auth_key is generated when the user logged in. Path
 Parameters: user(String): Name of the user whose information you want to
 retrieve. Method: GET Authentication: Required Permissions: Current user
