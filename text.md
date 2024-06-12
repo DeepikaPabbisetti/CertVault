@@ -27,27 +27,48 @@ Code: ``` 200 OK
         ```
 
 Content Example: 
-``` { 
-        "emp_id": "xxx", 
-        "name": "xxxxx", 
-        "email": "xxxxx@gmail.com", 
-        "photo": "emp_id_profile.jpg", 
-        "dob": "dd/mm/yyyy" 
-    } 
+``` 
+        { 
+                "emp_id": "xxx", 
+                "name": "xxxxx", 
+                "email": "xxxxx@gmail.com", 
+                "photo": "emp_id_profile.jpg", 
+                "dob": "dd/mm/yyyy" 
+        } 
 ```
-Error Response: Error
+Error Response: (Code: 400 Bad Request, 401 Unauthorized, etc.)
 
-(Code: 400 Bad Request, 401 Unauthorized, etc.)
+## Update user info 
 
-## Update user info This endpoint updates the profile information of a specific user. 
+This endpoint updates the profile information of a specific user. 
 
-URL: /certpro/api/:user/profile/ Headers: auth_key :
-[String] auth_key is generated when the user logged in. Path
-Parameters: user(String): Name of the user whose information you want to
-update. Method: PUT Authentication: Required Permissions: Current user
-(Employee) Data Request payload: { "name": "xxxxx", "photo":
-"emp_id_profile.jpg", "dob": "dd/mm/yyyy", } Success Response:
-Code: 201 OK Content Example: { "emp_id": "xxx", "name":
+URL: /certpro/api/:user/profile/ 
+
+Headers: auth_key : [String] 
+        auth_key is generated when the user logged in. 
+
+Path Parameters: user(String): 
+        Name of the user whose information you want to update. 
+        
+Method: PUT 
+
+Authentication: 
+
+Required Permissions: Current user (Employee) 
+
+Data Request payload: 
+        { 
+                "name": "xxxxx", 
+                "photo":"emp_id_profile.jpg", 
+                "dob": "dd/mm/yyyy"
+        } 
+
+Success Response:
+
+Code: 201 OK 
+Content Example: 
+        { 
+                "emp_id": "xxx", "name":
 "xxxxx", "email": "xxxxx@gmail.com", "photo":
 "emp_id_profile.jpg", "dob": "dd/mm/yyyy" } Error Responses: Code:
 202 Example response: { "error_message": "Requested operation has not
