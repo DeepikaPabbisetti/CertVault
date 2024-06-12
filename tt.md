@@ -19,7 +19,8 @@ This endpoint retrieves the profile information of a specific user.
       "email": "xxxxx@gmail.com",
       "photo": "emp_id_profile.jpg",
       "dob": "dd/mm/yyyy"
-    } ```
+    } 
+    ```
 - **Error Responses**:
   - **Code**: 400 Bad Request, 401 Unauthorized, etc.
 
