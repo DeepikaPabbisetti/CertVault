@@ -6,15 +6,28 @@ specific user.
 URL:  ``` /certpro/api/:user/profile 
         ``` 
 
-Headers: ```code 
-            auth_key :\[String\] auth_key is generated when the user logged in. 
+Headers: ```  auth_key :\[String\] auth_key is generated when the user logged in. 
         ```
-Path Parameters: user(String): Name of the user whose information you want to
-retrieve. Method: GET Authentication: Required Permissions: Current user
-(Employee) Success Response: Code: 200 OK Content Example: { \"emp_id\":
+
+Path Parameters: ``` user(String): Name of the user whose information you want to retrieve.
+        ``` 
+
+Method: ``` GET
+``` 
+Authentication: Yes
+
+Required Permissions: Current user (Employee) 
+
+Success Response: 
+
+Code: 200 OK 
+
+Content Example: 
+``` { \"emp_id\":
 \"xxx\", \"name\": \"xxxxx\", \"email\": \"xxxxx@gmail.com\", \"photo\":
 \"emp_id_profile.jpg\", \"dob\": \"dd/mm/yyyy", } Error Response: Error
 (Code: 400 Bad Request, 401 Unauthorized, etc.)
+```
 
 Update user info This endpoint updates the profile information of a
 specific user. URL: /certpro/api/:user/profile/ Headers: auth_key :
