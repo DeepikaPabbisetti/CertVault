@@ -6,22 +6,25 @@ specific user.
 URL:  ``` /certpro/api/:user/profile 
         ``` 
 
-Headers: ```  auth_key :[String] auth_key is generated when the user logged in. 
+Headers: ```  auth_key :[String] 
         ```
+        auth_key is generated when the user logged in. 
 
-Path Parameters: ``` user(String): Name of the user whose information you want to retrieve.
-        ``` 
+Path Parameters: ``` user(String): 
+                ``` 
+Name of the user whose information you want to retrieve.
 
 Method: ``` GET
         ``` 
-        
+
 Authentication: Yes
 
 Required Permissions: Current user (Employee) 
 
 Success Response: 
 
-Code: 200 OK 
+Code: ``` 200 OK 
+```
 
 Content Example: 
 ``` { 
