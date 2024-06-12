@@ -17,7 +17,7 @@ This endpoint retrieves the profile information of a specific user.
       "name": "xxxxx",
       "email": "xxxxx@gmail.com",
       "photo": "emp_id_profile.jpg",
-      "dob": "dd/mm/yyyy”
+      "dob": "dd/mm/yyyy"
     }
     ```
 - **Error Responses**:
@@ -36,7 +36,7 @@ This endpoint updates the profile information of a specific user.
 {
       "name": "xxxxx",
       "photo": "emp_id_profile.jpg",
-      "dob": "dd/mm/yyyy”,
+      "dob": "dd/mm/yyyy",
   }
 ## Success Response
 
@@ -48,7 +48,7 @@ This endpoint updates the profile information of a specific user.
     "name": "xxxxx",
     "email": "xxxxx@gmail.com",
     "photo": "emp_id_profile.jpg",
-    "dob": "dd/mm/yyyy”
+    "dob": "dd/mm/yyyy"
   }
   ```markdown
 ## Error Responses
@@ -57,14 +57,14 @@ This endpoint updates the profile information of a specific user.
   - **Example response**:
     ```json
 {
-    	“error_message”: “Requested operation has not been processed.”
+    	"error_message": "Requested operation has not been processed."
     }
     ```
 - **Code**: 403 FORBIDDEN
   - **Response**: 
     ```json    
 {
-    	“error_message”: “User is not authorized.”
+    	"error_message": "User is not authorized."
     }
     ```
 
