@@ -14,6 +14,7 @@ Path Parameters: ``` user(String): Name of the user whose information you want t
 
 Method: ``` GET
         ``` 
+        
 Authentication: Yes
 
 Required Permissions: Current user (Employee) 
