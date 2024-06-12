@@ -30,7 +30,7 @@ Content Example:
         "photo": "emp_id_profile.jpg", 
         "dob": "dd/mm/yyyy" 
     } 
-    
+```
 Error Response: Error
 
 (Code: 400 Bad Request, 401 Unauthorized, etc.)
