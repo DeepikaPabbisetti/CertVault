@@ -12,7 +12,7 @@ This endpoint retrieves the profile information of a specific user.
   - **Code**: 200 OK
   - **Content Example**:
     ```json
-    {
+{
       "emp_id": "xxx",
       "name": "xxxxx",
       "email": "xxxxx@gmail.com",
@@ -33,7 +33,7 @@ This endpoint updates the profile information of a specific user.
 - **Permissions**: Current user (Employee)
 - **Data Request Payload**:
   ```json
-  {
+{
       "name": "xxxxx",
       "photo": "emp_id_profile.jpg",
       "dob": "dd/mm/yyyy”,
@@ -43,7 +43,7 @@ This endpoint updates the profile information of a specific user.
 - **Code**: 201 OK
 - **Content Example**:
   ```json
-  {
+{
    "emp_id": "xxx",
     "name": "xxxxx",
     "email": "xxxxx@gmail.com",
@@ -56,14 +56,14 @@ This endpoint updates the profile information of a specific user.
 - **Code**: 202 
   - **Example response**:
     ```json
-    {
+{
     	“error_message”: “Requested operation has not been processed.”
     }
     ```
 - **Code**: 403 FORBIDDEN
   - **Response**: 
-    ```json
-    {
+    ```json    
+{
     	“error_message”: “User is not authorized.”
     }
     ```
@@ -90,14 +90,14 @@ This endpoint allows for the removal of a user account from the system, includin
 - **Code**: 403 FORBIDDEN
   - **Example Response**:
     ```json
-    {
+{
       "error_message": "Access forbidden. You are not authorized to perform this action."
     }
     ```
 - **Code**: 404 NOT FOUND
   - **Example Response**:
     ```json
-    {
+ {
       "error_message": "User not found."
     }
     ```
