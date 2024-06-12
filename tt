@@ -42,19 +42,15 @@ Error Response: (Code: 400 Bad Request, 401 Unauthorized, etc.)
 
 This endpoint updates the profile information of a specific user. 
 
-URL: ```
-/certpro/api/:user/profile/ ```
+URL: /certpro/api/:user/profile/ 
 
-Headers: ```
-auth_key : [String] ```
+Headers: auth_key : [String] 
         auth_key is generated when the user logged in. 
 
-Path Parameters: ```
-user(String): ```
+Path Parameters: user(String): 
         Name of the user whose information you want to update. 
         
-Method: ```
-PUT ```
+Method: PUT 
 
 Authentication: 
 
