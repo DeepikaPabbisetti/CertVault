@@ -3,10 +3,9 @@
 This endpoint retrieves the profile information of a
 specific user. 
 
-URL:  ```code 
-            /certpro/api/:user/profile 
+URL:  ``` /certpro/api/:user/profile 
         ``` 
-        
+
 Headers: ```code 
             auth_key :\[String\] auth_key is generated when the user logged in. 
         ```
