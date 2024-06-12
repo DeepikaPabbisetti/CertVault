@@ -12,14 +12,14 @@ This endpoint retrieves the profile information of a specific user.
   - **Code**: 200 OK
   - **Content Example**:
     ```json
-{
+    {
+
       "emp_id": "xxx",
       "name": "xxxxx",
       "email": "xxxxx@gmail.com",
       "photo": "emp_id_profile.jpg",
       "dob": "dd/mm/yyyy"
-    }
-    ```
+    } ```
 - **Error Responses**:
   - **Code**: 400 Bad Request, 401 Unauthorized, etc.
 
@@ -33,38 +33,40 @@ This endpoint updates the profile information of a specific user.
 - **Permissions**: Current user (Employee)
 - **Data Request Payload**:
   ```json
-{
-      "name": "xxxxx",
-      "photo": "emp_id_profile.jpg",
-      "dob": "dd/mm/yyyy",
+  {
+  "name": "xxxxx",
+  "photo": "emp_id_profile.jpg",
+  "dob": "dd/mm/yyyy",
   }
+  ```
 ## Success Response
 
 - **Code**: 201 OK
 - **Content Example**:
   ```json
-{
-   "emp_id": "xxx",
-    "name": "xxxxx",
-    "email": "xxxxx@gmail.com",
-    "photo": "emp_id_profile.jpg",
-    "dob": "dd/mm/yyyy"
+  {
+  "emp_id": "xxx",
+  "name": "xxxxx",
+  "email": "xxxxx@gmail.com",
+  "photo": "emp_id_profile.jpg",
+  "dob": "dd/mm/yyyy"
   }
-  ```markdown
+  ```
+
 ## Error Responses
 
-- **Code**: 202 
+- **Code**: 202
   - **Example response**:
     ```json
-{
-    	"error_message": "Requested operation has not been processed."
+    {
+      "error_message": "Requested operation has not been processed."
     }
     ```
 - **Code**: 403 FORBIDDEN
-  - **Response**: 
-    ```json    
-{
-    	"error_message": "User is not authorized."
+  - **Response**:
+    ```json
+    {
+      "error_message": "User is not authorized."
     }
     ```
 
@@ -78,7 +80,7 @@ This endpoint allows for the removal of a user account from the system, includin
 - **Authentication Header**: auth_key (String) - Generated during user login
 - **Permissions**: Employee (Current User)
 - **Path Parameters**:
-  - `user` (String): The username of the profile to be deleted.
+  - 'user' (String): The username of the profile to be deleted.
 
 ### Success Response:
 
@@ -90,18 +92,19 @@ This endpoint allows for the removal of a user account from the system, includin
 - **Code**: 403 FORBIDDEN
   - **Example Response**:
     ```json
-{
+    {
       "error_message": "Access forbidden. You are not authorized to perform this action."
     }
     ```
 - **Code**: 404 NOT FOUND
   - **Example Response**:
     ```json
- {
+    {
       "error_message": "User not found."
     }
     ```
-## Add Certification 
+
+## Add Certification
 
 This endpoint enables the user to add certification to the user's profile.
 
@@ -111,7 +114,7 @@ This endpoint enables the user to add certification to the user's profile.
 - **Authentication Header**: auth_key (String) - Generated during user login
 - **Permissions**: Employee (Current User)
 - **Path Parameters**:
-  - `user` (String): The username of the user to whom the certification will be added.
+  - 'user' (String): The username of the user to whom the certification will be added.
 
 ### Request Body:
 
@@ -125,11 +128,13 @@ This endpoint enables the user to add certification to the user's profile.
   "credential_url": "Credential URL"
 }
 ```
+
 ## Success Response:
 
 - **Code**: 201 CREATED
   - This status code indicates that the request has been successfully fulfilled, and a new resource has been returned as a result.
 - **Content Example**:
+
 ```json
 {
   "certification_id": "unique_id",
@@ -141,6 +146,7 @@ This endpoint enables the user to add certification to the user's profile.
   "credential_url": "Credential URL"
 }
 ```
+
 ## Error Responses:
 
 - **Code**: 400 BAD REQUEST
@@ -164,7 +170,8 @@ This endpoint enables the user to add certification to the user's profile.
       "error_message": "User not found."
     }
     ```
-## Update Certification 
+
+## Update Certification
 
 This endpoint enables the user to update certification to user's profile.
 
@@ -190,11 +197,13 @@ This endpoint enables the user to update certification to user's profile.
   "credential_url": "Credential URL"
 }
 ```
+
 ## Success Response:
 
 - **Code**: 201 CREATED
   - This status code indicates that the request has been successfully fulfilled, and a new resource has been created as a result.
 - **Content Example**:
+
 ```json
 {
   "certification_id": "unique_id",
@@ -206,9 +215,11 @@ This endpoint enables the user to update certification to user's profile.
   "credential_url": "Credential URL"
 }
 ```
+
 ## Error Responses:
 
 - **Code**: 400 BAD REQUEST
+
   - **Example Response**:
     ```json
     {
@@ -217,6 +228,7 @@ This endpoint enables the user to update certification to user's profile.
     ```
 
 - **Code**: 403 FORBIDDEN
+
   - **Example Response**:
     ```json
     {
@@ -231,6 +243,7 @@ This endpoint enables the user to update certification to user's profile.
       "error_message": "User not found."
     }
     ```
+
 ## Search Certification
 
 This endpoint enables the user to search certification.
@@ -293,6 +306,7 @@ This endpoint enables the user to search certification.
 ### Error Responses:
 
 - **Code**: 403 FORBIDDEN
+
   - **Example Response**:
     ```json
     {
@@ -307,7 +321,8 @@ This endpoint enables the user to search certification.
       "error_message": "Cert not found."
     }
     ```
-## Show Certifications 
+
+## Show Certifications
 
 This endpoint enables retrieval of certification from the user's profile.
 
@@ -365,6 +380,7 @@ This endpoint enables retrieval of certification from the user's profile.
 ### Error Responses:
 
 - **Code**: 403 FORBIDDEN
+
   - **Example Response**:
     ```json
     {
@@ -379,4 +395,7 @@ This endpoint enables retrieval of certification from the user's profile.
       "error_message": "User not found."
     }
     ```
+
+```
+
 ```
